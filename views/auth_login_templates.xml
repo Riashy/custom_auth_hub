@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="custom_login_with_otp" inherit_id="web.login" name="Login with OTP Block">
-        <xpath expr="//div[contains(@class, 'oe_login_form')]" position="inside">
+        <xpath expr="//form[contains(@class, 'oe_login_form')]" position="inside">
             <div class="mt-4 pt-3 border-top" id="custom_otp_login_box">
                 <h5 class="mb-3">Login with OTP</h5>
 
@@ -43,29 +43,21 @@
     </template>
 
     <template id="otp_login_success_page" name="OTP Login Success Page">
-        <t t-call="website.layout">
-            <div class="container py-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="card shadow-sm">
-                            <div class="card-body p-4">
-                                <h3 class="mb-3">OTP verified</h3>
-                                <p class="mb-2">
-                                    Mobile:
-                                    <strong t-esc="otp_mobile"/>
-                                </p>
-                                <p class="mb-4">
-                                    User ID:
-                                    <strong t-esc="otp_user_id"/>
-                                </p>
-                                <div class="alert alert-info">
-                                    Verification succeeded. Next, we wire this to final session login.
-                                </div>
-                                <a href="/web/login" class="btn btn-secondary">Back to login</a>
-                            </div>
-                        </div>
-                    </div>
+        <t t-call="web.login_layout">
+            <div class="oe_login_form">
+                <h3 class="mb-3">OTP verified</h3>
+                <p class="mb-2">
+                    Mobile:
+                    <strong t-esc="otp_mobile"/>
+                </p>
+                <p class="mb-4">
+                    User ID:
+                    <strong t-esc="otp_user_id"/>
+                </p>
+                <div class="alert alert-info">
+                    Verification succeeded. Next, we wire this to final session login.
                 </div>
+                <a href="/web/login" class="btn btn-secondary">Back to login</a>
             </div>
         </t>
     </template>
